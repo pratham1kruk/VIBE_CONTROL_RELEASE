@@ -1,0 +1,132 @@
+VIBE CONTROL (VBC) — PROPRIETARY SOFTWARE LICENSE
+
+Copyright (c) 2025 Pratham Kumar Uikey. All Rights Reserved.
+
+================================================================================
+PROPRIETARY AND CONFIDENTIAL
+================================================================================
+
+This software, VIBE Control (VBC), including all source code, binaries,
+documentation, assets, algorithms, data structures, interfaces, and associated
+files (collectively, the "Software"), is the exclusive intellectual property of
+Pratham Kumar Uikey ("Owner").
+
+--------------------------------------------------------------------------------
+1. OWNERSHIP
+--------------------------------------------------------------------------------
+
+The Owner retains full and exclusive ownership of the Software, including all
+intellectual property rights, patent rights, trade secret rights, copyright
+rights, and any other proprietary rights worldwide. No title or ownership of
+the Software is transferred to any party under any circumstances.
+
+--------------------------------------------------------------------------------
+2. PATENT RIGHTS
+--------------------------------------------------------------------------------
+
+The Owner holds all patent rights — whether pending, granted, or future — over
+the concepts, methods, systems, and processes embodied in this Software. No
+license, express or implied, is granted to any party with respect to any patent
+held or controlled by the Owner.
+
+--------------------------------------------------------------------------------
+3. RESTRICTIONS
+--------------------------------------------------------------------------------
+
+No person, organization, or entity, except the Owner, may:
+
+  (a) modify, adapt, translate, patch, or create derivative works based on the
+      Software or any portion thereof;
+  (b) sell, resell, sublicense, rent, lease, or otherwise commercialize the
+      Software or any portion thereof;
+  (c) redistribute the Software bundled with another product, service, or
+      package, whether free or paid, without prior written consent from the Owner;
+  (d) reverse engineer, decompile, disassemble, or attempt to derive the source
+      code of any compiled portion of the Software;
+  (e) use the Software, in whole or in part, to build a competing product or
+      service;
+  (f) remove, alter, or obscure any proprietary notices, labels, or marks on
+      the Software;
+  (g) publish, publicly display, or disclose the internal implementation,
+      algorithms, or source code of the Software without prior written consent
+      from the Owner;
+  (h) claim ownership, authorship, or original creation of the Software or any
+      part thereof;
+  (i) charge any fee, directly or indirectly, for access to or distribution of
+      the Software.
+
+--------------------------------------------------------------------------------
+4. DISTRIBUTION
+--------------------------------------------------------------------------------
+
+The Owner holds the sole and exclusive right to distribute the Software,
+whether commercially or otherwise, in any form or medium, including but not
+limited to binary distributions, installer packages, archives, or cloud-hosted
+deployments. Any distribution by a party other than the Owner is strictly
+prohibited without explicit written authorization.
+
+--------------------------------------------------------------------------------
+5. PERMITTED USE
+--------------------------------------------------------------------------------
+
+The Software is made available for free personal and internal use. Any
+individual may:
+
+  (a) download and install the Software for personal or internal use;
+  (b) use the Software to manage, track, and version their own codebases;
+  (c) share the original, unmodified installer or binary with others, provided
+      no fee is charged and this License and all copyright notices remain intact.
+
+These permissions do not grant any rights to the source code, internal
+implementation, or any intellectual property beyond what is explicitly stated
+in this section.
+
+--------------------------------------------------------------------------------
+6. NO WARRANTIES
+--------------------------------------------------------------------------------
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. THE OWNER DISCLAIMS ALL WARRANTIES INCLUDING, WITHOUT LIMITATION,
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+NON-INFRINGEMENT.
+
+--------------------------------------------------------------------------------
+7. LIMITATION OF LIABILITY
+--------------------------------------------------------------------------------
+
+IN NO EVENT SHALL THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+--------------------------------------------------------------------------------
+8. TERMINATION
+--------------------------------------------------------------------------------
+
+Any rights granted to use the Software terminate immediately and automatically
+upon violation of any term of this License. Upon termination, the user must
+destroy all copies of the Software in their possession.
+
+--------------------------------------------------------------------------------
+9. GOVERNING LAW
+--------------------------------------------------------------------------------
+
+This License shall be governed by and construed in accordance with the laws of
+India. Any disputes arising under this License shall be subject to the exclusive
+jurisdiction of the courts located in India.
+
+--------------------------------------------------------------------------------
+10. CONTACT
+--------------------------------------------------------------------------------
+
+For licensing inquiries, authorized distribution requests, or permissions beyond
+the scope of this License, contact:
+
+  Pratham Kumar Uikey
+  GitHub : https://github.com/pratham1kruk
+
+================================================================================
+ALL RIGHTS RESERVED. UNAUTHORIZED USE, REPRODUCTION, OR DISTRIBUTION OF THIS
+SOFTWARE, IN WHOLE OR IN PART, IS STRICTLY PROHIBITED AND MAY RESULT IN SEVERE
+CIVIL AND CRIMINAL PENALTIES.
+================================================================================

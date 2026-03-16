@@ -1,0 +1,118 @@
+<svg width="900" height="200" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff9f"/>
+      <stop offset="100%" style="stop-color:#00cfff"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="60%" style="stop-color:#e0e0ff"/>
+      <stop offset="100%" style="stop-color:#00ff9f"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="nodeglow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="200" fill="url(#bg)" rx="12"/>
+  <rect width="900" height="200" fill="url(#grid)" rx="12"/>
+  <rect width="900" height="200" fill="none" stroke="#00ff9f1a" stroke-width="1.5" rx="12"/>
+
+  <!-- Decorative bg circle -->
+  <circle cx="820" cy="100" r="130" fill="none" stroke="#00ff9f06" stroke-width="50"/>
+
+  <!-- ===== W LOGO ===== -->
+  <g transform="translate(22, 38) scale(0.60)">
+    <g stroke="#4a9eff" stroke-width="26" stroke-linecap="round" fill="none">
+      <line x1="28" y1="28" x2="95" y2="148"/>
+      <line x1="95" y1="148" x2="155" y2="78"/>
+      <line x1="155" y1="78" x2="215" y2="148"/>
+      <line x1="215" y1="148" x2="280" y2="28"/>
+    </g>
+    <!-- Top-left blue -->
+    <circle cx="28" cy="28" r="22" fill="#4a9eff" filter="url(#nodeglow)"/>
+    <!-- Top-right blue -->
+    <circle cx="280" cy="28" r="22" fill="#4a9eff" filter="url(#nodeglow)"/>
+    <!-- Center gold -->
+    <circle cx="155" cy="78" r="22" fill="#f5b731" filter="url(#nodeglow)"/>
+    <!-- Bottom-left green -->
+    <circle cx="95" cy="148" r="22" fill="#4ade80" filter="url(#nodeglow)"/>
+    <!-- Bottom-right green -->
+    <circle cx="215" cy="148" r="22" fill="#4ade80" filter="url(#nodeglow)"/>
+  </g>
+
+  <!-- ===== TEXT ===== -->
+
+  <!-- Terminal prompt -->
+  <text x="202" y="48" font-family="'Courier New', Courier, monospace" font-size="11" fill="#00ff9f" opacity="0.5">$ vbc watch --bg</text>
+  <text x="327" y="48" font-family="'Courier New', Courier, monospace" font-size="11" fill="#ffffff" opacity="0.18">→ watcher started · flags auto-assigned</text>
+  <rect x="315" y="38" width="7" height="13" fill="#00ff9f" opacity="0.55" rx="1"/>
+
+  <!-- VBC title -->
+  <text x="198" y="122"
+    font-family="'Courier New', Courier, monospace"
+    font-size="82"
+    font-weight="900"
+    fill="url(#titleGrad)"
+    filter="url(#softglow)"
+    letter-spacing="-2"
+  >VBC</text>
+
+  <!-- Divider -->
+  <line x1="198" y1="137" x2="600" y2="137" stroke="url(#accentGrad)" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- VIBE CONTROL -->
+  <text x="199" y="158" font-family="'Courier New', Courier, monospace" font-size="14" fill="#00ff9f" filter="url(#glow)" letter-spacing="3">VIBE CONTROL</text>
+
+  <!-- Tagline -->
+  <text x="199" y="178" font-family="'Courier New', Courier, monospace" font-size="11" fill="#6666aa" letter-spacing="0.3">Auto-tracks your edit history as you code. No staging. No commit messages. Just flow.</text>
+
+  <!-- ===== FLAG NODES (right) ===== -->
+  <g opacity="0.8">
+    <line x1="648" y1="80" x2="862" y2="80" stroke="#ffffff10" stroke-width="1.5"/>
+
+    <circle cx="655" cy="80" r="7" fill="none" stroke="#f59e0b" stroke-width="2" filter="url(#glow)"/>
+    <text x="655" y="100" font-family="'Courier New', monospace" font-size="8.5" fill="#f59e0b" text-anchor="middle">MF+</text>
+
+    <circle cx="695" cy="80" r="7" fill="none" stroke="#f97316" stroke-width="2" filter="url(#glow)"/>
+    <text x="695" y="100" font-family="'Courier New', monospace" font-size="8.5" fill="#f97316" text-anchor="middle">mf+</text>
+
+    <circle cx="735" cy="80" r="7" fill="#22c55e" filter="url(#glow)"/>
+    <text x="735" y="100" font-family="'Courier New', monospace" font-size="8.5" fill="#22c55e" text-anchor="middle">WF</text>
+
+    <circle cx="775" cy="80" r="7" fill="#3b82f6" filter="url(#glow)"/>
+    <text x="775" y="100" font-family="'Courier New', monospace" font-size="8.5" fill="#3b82f6" text-anchor="middle">UF</text>
+
+    <circle cx="815" cy="80" r="7" fill="none" stroke="#a855f7" stroke-width="2" filter="url(#glow)"/>
+    <text x="815" y="100" font-family="'Courier New', monospace" font-size="8.5" fill="#a855f7" text-anchor="middle">CF</text>
+
+    <polygon points="853,73 860,80 853,87 846,80" fill="#facc15" filter="url(#glow)"/>
+    <text x="853" y="100" font-family="'Courier New', monospace" font-size="8.5" fill="#facc15" text-anchor="middle">CKP</text>
+  </g>
+</svg>
