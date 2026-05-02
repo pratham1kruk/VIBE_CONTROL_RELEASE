@@ -7,7 +7,7 @@
 *Auto-tracks your edit history as you code. No staging. No commit messages required. Just flow.*
 
 ![Node.js](https://img.shields.io/badge/Node.js-v16%2B-green?style=flat-square&logo=node.js)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20WSL%20%7C%20Linux-blue?style=flat-square)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue?style=flat-square)
 ![VS Code](https://img.shields.io/badge/VS%20Code-Extension%20Included-007ACC?style=flat-square&logo=visualstudiocode)
 ![Zero deps](https://img.shields.io/badge/Dependencies-Zero-brightgreen?style=flat-square)
 
@@ -25,7 +25,9 @@
 - [Installation](#installation)
   - [Requirements](#requirements)
   - [Windows](#windows)
-  - [Linux](#linux)
+  - [macOS](#macos)
+  - [Linux — Binary Script](#linux--binary-script)
+  - [Linux — .deb Package](#linux--deb-package)
   - [VS Code Extension](#vs-code-extension)
   - [Updating the CLI](#updating-the-cli)
 - [Quick Start](#quick-start)
@@ -109,7 +111,7 @@ Every change in VBC is recorded as a typed, colored flag.
 
 ### Requirements
 
-- Windows 10/11 or Linux (x64)
+- Windows 10/11, macOS, or Linux (x64)
 - VS Code 1.85+ *(for the extension — optional)*
 
 ---
@@ -145,9 +147,50 @@ vbc help
 
 ---
 
-### Linux
+### macOS
 
-You need two files from the `linux/` folder:
+You need two files from the `macOS/` folder:
+
+```
+macOS/
+├── vbc-macos-x64-v1.0.0      ← the binary (Intel / x64)
+└── vbc-install.sh             ← the installer script
+```
+
+**1. Download both files into the same folder, then run:**
+```bash
+bash vbc-install.sh
+```
+
+The script will:
+- Copy the binary to `~/.vbc-cli/vbc`
+- Create a symlink at `/usr/local/bin/vbc`
+- Configure PATH for bash, zsh, and fish if needed
+
+**2. Open a new terminal and verify:**
+```bash
+vbc help
+```
+
+#### Update
+
+```bash
+bash vbc-install.sh --update
+```
+
+#### Uninstall
+
+```bash
+bash vbc-install.sh --uninstall
+```
+
+> **Apple Silicon (M1/M2/M3):** An `arm64` native binary is coming soon. In the meantime, the x64 binary runs via Rosetta 2 — install Rosetta if prompted: `softwareupdate --install-rosetta`.
+
+---
+
+### Linux — Binary Script
+
+For Fedora, Arch, and other non-Debian distributions. You need two files from the `linux/` folder:
 
 ```
 linux/
@@ -197,6 +240,29 @@ source ~/.bashrc    # or just open a new terminal
 
 ---
 
+### Linux — .deb Package
+
+For Ubuntu, Debian, and other `dpkg`-based distributions. Download from the `linux_deb_package/` folder:
+
+```
+linux_deb_package/
+└── vbc_1.0.0_amd64.deb
+```
+
+**Install:**
+```bash
+sudo dpkg -i vbc_1.0.0_amd64.deb
+```
+
+**Uninstall:**
+```bash
+sudo dpkg -r vbc
+```
+
+Places the binary at `/usr/local/bin/vbc` (on PATH immediately). Automatically installs the VS Code extension on install and removes it on uninstall if `code` is on PATH. No Node.js required.
+
+---
+
 ### VS Code Extension *(optional but recommended)*
 
 The extension is bundled inside the Windows installer and installed automatically. If you need to install it manually:
@@ -216,7 +282,7 @@ Ctrl+Shift+P → Developer: Reload Window
 
 ```bash
 vbc update C:\path\to\new-version          # Windows
-vbc update /home/user/new-version          # Linux
+vbc update /home/user/new-version          # Linux / macOS
 ```
 
 ---
@@ -395,7 +461,7 @@ Update the CLI from a newly extracted folder.
 
 ```bash
 vbc update C:\Downloads\vbc_unified     # Windows
-vbc update /home/user/vbc_unified       # Linux / WSL
+vbc update /home/user/vbc_unified       # Linux / macOS
 ```
 
 On WSL, automatically updates both the WSL and Windows sides.
@@ -495,17 +561,22 @@ Press `Ctrl+Shift+P` and type **VBC** to access all commands: plot, reset, log, 
 ## Project Structure
 
 ```
-VBC/                          ← repo root
+vbc_ins/                           ← repo root
 ├── assets/
-│   └── vbc-banner.svg        ← banner image
+│   └── vbc-banner.svg             ← banner image
 ├── linux/
-│   ├── vbc-linux-x64-v1.0.0  ← Linux binary
-│   └── vbc-install.sh        ← Linux installer script
+│   ├── vbc-linux-x64-v1.0.0       ← Linux binary (Fedora, Arch, non-Debian)
+│   └── vbc-install.sh             ← Linux installer script
+├── linux_deb_package/
+│   └── vbc_1.0.0_amd64.deb        ← Debian / Ubuntu package
+├── macOS/
+│   ├── vbc-macos-x64-v1.0.0       ← macOS binary (Intel x64)
+│   └── vbc-install.sh             ← macOS installer script
 ├── windows_installer/
-│   └── VBC_Installer.exe     ← Windows NSIS installer
+│   └── VBC_Installer.exe          ← Windows NSIS installer
+├── Documentation.pdf              ← full user documentation
 ├── LICENSE
-├── README.md
-└── vbc-icon.ico              ← app icon
+└── README.md
 ```
 
 ---
