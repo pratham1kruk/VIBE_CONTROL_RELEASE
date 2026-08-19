@@ -1,2 +1,4 @@
 .vbc/
 .vbcignore
+*_c3_*
+*_scc_*
