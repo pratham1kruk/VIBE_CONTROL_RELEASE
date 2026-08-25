@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================
-#  VBC — VIBE Control  |  Linux Binary Installer
+#  VBC — VIBE Control  |  Linux / macOS Binary Installer
 #  Created by Pratham Kumar Uikey — github.com/pratham1kruk
 #
 #  Installs the compiled vbc binary — no source code exposed,
@@ -14,14 +14,13 @@
 
 set -e
 
-VBC_VERSION="1.0.0"
+VBC_VERSION="1.0.1"
 VBC_AUTHOR="Pratham Kumar Uikey"
 VBC_GITHUB="https://github.com/pratham1kruk"
 VBC_INSTALL_DIR="$HOME/.vbc-cli"
 VBC_BIN_LINK="/usr/local/bin/vbc"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BINARY_SRC="$SCRIPT_DIR/vbc-linux-x64-v${VBC_VERSION}"
 
 # ── Colors ───────────────────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
@@ -31,6 +30,16 @@ ok()      { echo -e "  ${GREEN}✔${RESET}  $1"; }
 info()    { echo -e "  ${CYAN}→${RESET}  $1"; }
 warn()    { echo -e "  ${YELLOW}⚠${RESET}  $1"; }
 err()     { echo -e "  ${RED}✖${RESET}  $1"; exit 1; }
+
+# Pick the right binary for this OS — an ELF binary won't run on macOS
+# at all, so this has to match the actual platform rather than assume one.
+case "$(uname -s)" in
+  Darwin) OS_LABEL="macos" ;;
+  Linux)  OS_LABEL="linux" ;;
+  *)      err "Unsupported OS: $(uname -s). This installer supports Linux and macOS only." ;;
+esac
+BINARY_SRC="$SCRIPT_DIR/vbc-${OS_LABEL}-x64-v${VBC_VERSION}"
+VSIX_FILE="$SCRIPT_DIR/vbc-vibe-control-0.1.0.vsix"
 
 print_banner() {
   echo ""
@@ -49,7 +58,7 @@ print_banner() {
 
 check_binary() {
   if [ ! -f "$BINARY_SRC" ]; then
-    err "Binary not found: vbc-linux-x64-v${VBC_VERSION}"
+    err "Binary not found: vbc-${OS_LABEL}-x64-v${VBC_VERSION}"
     echo -e "  Make sure this installer is in the same folder as the binary."
     exit 1
   fi
@@ -98,11 +107,19 @@ do_install() {
   chmod +x "$VBC_INSTALL_DIR/vbc"
   ok "Binary installed"
 
-  # Also install VS Code extension files if present
-  if [ -d "$SCRIPT_DIR/vbc-extension" ]; then
-    cp -r "$SCRIPT_DIR/vbc-extension"        "$VBC_INSTALL_DIR/"
-    cp -f "$SCRIPT_DIR/install-extension.sh" "$VBC_INSTALL_DIR/" 2>/dev/null || true
-    ok "VS Code extension files installed"
+  # Install VS Code extension if the .vsix is present next to this script
+  if [ -f "$VSIX_FILE" ]; then
+    if command -v code &>/dev/null; then
+      info "Installing VS Code extension..."
+      if code --install-extension "$VSIX_FILE" &>/dev/null; then
+        ok "VS Code extension installed"
+      else
+        warn "Extension install failed. Run manually: code --install-extension \"$VSIX_FILE\""
+      fi
+    else
+      warn "VS Code not found on PATH."
+      echo -e "  ${DIM}Install VS Code, then run: code --install-extension \"$VSIX_FILE\"${RESET}"
+    fi
   fi
 
   # Symlink to /usr/local/bin
@@ -200,6 +217,11 @@ do_uninstall() {
     }
   done
 
+  if command -v code &>/dev/null; then
+    code --uninstall-extension vbc.vbc-vibe-control &>/dev/null && \
+      ok "VS Code extension removed" || true
+  fi
+
   echo ""
   ok "VBC uninstalled."
   echo -e "  ${DIM}Thank you for using VBC — ${VBC_AUTHOR}${RESET}"
@@ -211,7 +233,7 @@ case "${1:-}" in
   --update|-U)    do_update    ;;
   --help|-h)
     echo ""
-    echo -e "  ${BOLD}VBC Linux Installer  v${VBC_VERSION}${RESET}"
+    echo -e "  ${BOLD}VBC Linux/macOS Installer  v${VBC_VERSION}${RESET}"
     echo -e "  ${DIM}${VBC_AUTHOR}  —  ${VBC_GITHUB}${RESET}"
     echo ""
     echo "  bash vbc-install.sh             Install"
