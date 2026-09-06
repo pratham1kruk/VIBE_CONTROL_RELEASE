@@ -11,115 +11,42 @@
 ![VS Code](https://img.shields.io/badge/VS%20Code-Extension%20Included-007ACC?style=flat-square&logo=visualstudiocode)
 ![License](https://img.shields.io/badge/License-Proprietary-lightgrey?style=flat-square)
 
-**[Windows](#windows) · [Linux](#linux) · [macOS](#macos) · [WSL](#wsl) · [VS Code Extension](#vs-code-extension)**
+**[Install](./documentation.md) · [Full Documentation](./docx/Documentation.docx) · [Quick Start](#quick-start)**
 
 </div>
 
 ---
 
-## Why VBC
+## What is VBC
 
-Git is built for history you intend to keep. VBC is built for the history you make *while getting there* — every save, every experiment, every half-working idea — without asking you to stage a file or write a commit message first.
+Traditional version control asks you to decide, in advance, which moment is worth remembering. When you're actively working something out — trying an approach, backing out of it, trying another — that decision gets in the way. You either commit too often and drown the history in noise, or you commit too rarely and lose the steps in between.
 
-- **Zero ceremony.** Start the watcher and code. Every save is captured automatically.
-- **Byte-exact.** Text, images, PDFs, executables — everything round-trips exactly, always.
-- **Your checkpoints, your numbering.** Drop a full project snapshot whenever you hit a stable point, and choose its number yourself.
-- **Offline, always.** No account, no cloud, no network calls. Everything lives in `.vbc/` at your project root.
-- **Not a Git replacement.** Use VBC *during* a coding session to capture every step, then push to Git when you're ready to ship.
+**VBC removes the decision.** Start the watcher, and every save becomes part of your project's history automatically — no staging, no commit message required, no interruption to your flow. When you reach a point actually worth marking, you commit *that* — a file, a session, a full checkpoint — in one short command, with a message if you want one.
 
-VBC ships as a **standalone binary** on every platform below — no Node.js required to install or run it.
+It's not a replacement for Git. It's what happens *before* Git: the fine-grained record of how you got somewhere, so that by the time you're ready to push, the story is already written.
 
 ---
 
-## Install
+## Why it exists
 
-Pick your platform. Each folder in this repository is self-contained: everything you need for that platform is inside it.
-
-### Windows
-
-**Recommended — full installer:**
-
-```
-windows_installer\VBC_Installer.exe
-```
-
-Run it and follow the prompts. It installs `vbc.exe`, adds it to your PATH, and installs the VS Code extension automatically if VS Code is detected.
-
-**Alternative — binary + script:**
-
-```
-cd windows
-.\vbc-install.bat
-```
-
-Open a new terminal, then run `vbc help` to confirm the install.
-
-### Linux
-
-**Debian / Ubuntu — `.deb` package:**
-
-```bash
-sudo apt install ./linux_deb_package/vbc_1.0.1_amd64.deb
-```
-
-Installs `vbc` to `/usr/local/bin`, on your PATH immediately. Auto-installs the VS Code extension if `code` is on PATH.
-
-**Any distro — binary + script:**
-
-```bash
-cd linux
-bash vbc-install.sh
-```
-
-Restart your shell, then run `vbc help` to confirm the install.
-
-### macOS
-
-**Recommended — binary + script:**
-
-```bash
-cd macOS
-bash vbc-install.sh
-```
-
-Same install script as Linux — installs the compiled binary, no Node.js required.
-
-**Prefer a native `.pkg`?** Building a signed macOS installer requires Apple's own tooling, which only runs on a Mac — so instead of an unsigned prebuilt file, we ship you the build script directly:
-
-```bash
-cp macOS/vbc-macos-x64-v1.0.1 macOS_package/
-cp macOS/vbc-vibe-control-0.1.0.vsix macOS_package/
-cd macOS_package
-chmod +x build-vbc-macos-pkg.sh
-./build-vbc-macos-pkg.sh          # Intel
-./build-vbc-macos-pkg.sh arm64    # Apple Silicon
-```
-
-This builds a local `.pkg` you install the normal double-click way. Both install paths are fully supported — use whichever you prefer.
-
-### WSL
-
-From inside your WSL distro, after installing VBC on Windows:
-
-```bash
-vbc sync wsl
-```
-
-If more than one distro is registered, you'll be asked which one(s) to link.
+- **Coding-in-the-moment doesn't map to staged commits.** The unit of work while you're actively building something is a save, not a deliberate checkpoint — VBC tracks at that resolution.
+- **Byte-exact, every time.** Text, images, PDFs, binaries — everything round-trips exactly. Nothing is summarized, diffed lossily, or reconstructed.
+- **Checkpoints are yours to name.** When you do want a stable snapshot, you choose the number — VBC never silently renumbers or auto-increments behind your back.
+- **Fully offline.** No account, no sync, no telemetry. Everything lives in a `.vbc/` folder at your project root.
 
 ---
 
-## VS Code Extension
+## Key features
 
-Every install method above installs the extension automatically if VS Code is detected. To install it manually:
-
-```bash
-code --install-extension vbc-vibe-control-0.1.0.vsix
-```
-
-(the `.vsix` is included in each platform folder — `linux/`, `macOS/`, and `windows/`)
-
-Then reload VS Code: `Ctrl+Shift+P` → **Developer: Reload Window**.
+| | |
+|---|---|
+| **Automatic tracking** | A background watcher flags every save the moment it happens — full rewrite, partial edit, copy, or revert, each recorded distinctly |
+| **Manual commits, your way** | Commit a single file or your whole working set, with or without a message |
+| **Numbered checkpoints** | Drop a full project snapshot at any point, under a checkpoint number you choose |
+| **Visual flag language** | Every change is a typed, colored flag — glance at your history and know instantly what kind of change it was |
+| **VS Code integration** | A full extension: inline flag indicators, a visual history graph, and every command from the Command Palette |
+| **Cross-platform** | Native standalone binaries for Windows, Linux, and macOS, plus first-class WSL support |
+| **No dependencies to run** | Every install method ships a compiled binary — Node.js is never required just to use VBC |
 
 ---
 
@@ -127,33 +54,51 @@ Then reload VS Code: `Ctrl+Shift+P` → **Developer: Reload Window**.
 
 ```bash
 cd my-project
-vbc init                                    # creates .vbc/ + .vbcignore
-vbc watch                                   # start the watcher
+vbc init                                            # sets up .vbc/ + .vbcignore
+vbc watch                                           # start the watcher — code normally from here
 
-# code normally — flags appear automatically as you save
+# save files as you work; flags appear automatically
 
-vbc plot we flag src/main.py -ms "login done"      # commit a file
-vbc plot us flag -ms "session 1 complete"          # commit everything
-vbc plot ckp as ckp1 -ms "v1.0 — stable"           # full snapshot, your number
+vbc plot we flag src/main.py -ms "login done"       # commit one file
+vbc plot us flag -ms "session 1 complete"           # commit everything flagged
+vbc plot ckp as ckp1 -ms "v1.0 — auth + dashboard"  # full checkpoint, your number
 ```
 
-Run `vbc help` for the full command reference, or `Ctrl+Shift+P` → **VBC** inside VS Code.
+Run `vbc help` at any time for the full command list, or open the Command Palette in VS Code and search **VBC**.
+
+For the complete picture — every command, the flag system, `.vbcignore`, the VS Code extension, and how VBC stores your data — see the full **[Documentation](./docx/Documentation.docx)**.
+
+---
+
+## Install
+
+Install instructions for every platform — Windows, Linux, macOS, and WSL — live in **[`documentation.md`](./documentation.md)**. Every method installs a standalone binary; none require Node.js.
+
+| Platform | Fastest path |
+|---|---|
+| Windows | `windows_installer\VBC_Installer.exe` |
+| Linux (Debian/Ubuntu) | `sudo apt install ./linux_deb_package/vbc_1.0.1_amd64.deb` |
+| macOS | `cd macOS && bash vbc-install.sh` |
+| WSL | `vbc sync wsl`, from Windows, after installing there |
 
 ---
 
 ## What's in this repository
 
-| Path | Contents |
-|---|---|
-| `windows_installer/` | `VBC_Installer.exe` — full Windows installer |
-| `windows/` | Standalone Windows binary, install script, VS Code extension |
-| `linux_deb_package/` | `.deb` package for Debian/Ubuntu |
-| `linux/` | Standalone Linux binary, install script, VS Code extension |
-| `macOS/` | Standalone macOS binary, install script, VS Code extension |
-| `macOS_package/` | Build script for a native `.pkg` — bring your own binary + `.vsix` from `macOS/` |
-| `assets/` | Shared branding assets |
+```
+VIBE_CONTROL_RELEASE/
+├── docx/                    ← full documentation (what, why, how)
+├── windows_installer/       ← full Windows installer
+├── windows/                 ← standalone binary + script
+├── linux_deb_package/       ← .deb package (Debian/Ubuntu)
+├── linux/                   ← standalone binary + script
+├── macOS/                   ← standalone binary + script
+├── macOS_package/           ← build your own native .pkg
+├── documentation.md         ← installation guide (this repo's other doc)
+└── README.md                ← you are here
+```
 
-No source code, and no Node.js requirement, anywhere in this bundle except a manual WSL source install.
+This repository ships compiled, ready-to-run releases only — no source code.
 
 ---
 
