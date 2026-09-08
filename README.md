@@ -11,7 +11,7 @@
 ![VS Code](https://img.shields.io/badge/VS%20Code-Extension%20Included-007ACC?style=flat-square&logo=visualstudiocode)
 ![License](https://img.shields.io/badge/License-Proprietary-lightgrey?style=flat-square)
 
-**[Install](./documentation.md) · [Full Documentation](./docx/Documentation.docx) · [Quick Start](#quick-start)**
+**[Install](./documentation.md) · [Full Documentation](./docx/Documentation.pdf) · [Quick Start](#quick-start)**
 
 </div>
 
@@ -66,7 +66,7 @@ vbc plot ckp as ckp1 -ms "v1.0 — auth + dashboard"  # full checkpoint, your nu
 
 Run `vbc help` at any time for the full command list, or open the Command Palette in VS Code and search **VBC**.
 
-For the complete picture — every command, the flag system, `.vbcignore`, the VS Code extension, and how VBC stores your data — see the full **[Documentation](./docx/Documentation.docx)**.
+For the complete picture — every command, the flag system, `.vbcignore`, the VS Code extension, and how VBC stores your data — see the full **[Documentation](./docx/Documentation.pdf)**.
 
 ---
 
@@ -87,7 +87,7 @@ Install instructions for every platform — Windows, Linux, macOS, and WSL — l
 
 ```
 VIBE_CONTROL_RELEASE/
-├── docx/                    ← full documentation (what, why, how)
+├── docx/                    ← full documentation (what, why, how) — PDF
 ├── windows_installer/       ← full Windows installer
 ├── windows/                 ← standalone binary + script
 ├── linux_deb_package/       ← .deb package (Debian/Ubuntu)
