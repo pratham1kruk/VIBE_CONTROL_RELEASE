@@ -4,7 +4,7 @@
 
 # Installation Guide
 
-*For what VBC does and how to use it, see [`docx/Documentation.docx`](./docx/Documentation.docx). This file covers installation only.*
+*For what VBC does and how to use it, see [`docx/Documentation.pdf`](./docx/Documentation.pdf). This file covers installation only.*
 
 </div>
 
@@ -200,4 +200,4 @@ Then reload VS Code: `Ctrl+Shift+P` → **Developer: Reload Window**.
 
 **Wrong binary for your Mac's chip** — the binary in `macOS/` is Intel (x64), which also runs on Apple Silicon via Rosetta 2. For a native Apple Silicon build, use the `arm64` option when building the `.pkg` (see [Native .pkg](#native-pkg-build-it-yourself)).
 
-For everything else — commands, usage, and how VBC works — see [`docx/Documentation.docx`](./docx/Documentation.docx).
+For everything else — commands, usage, and how VBC works — see [`docx/Documentation.pdf`](./docx/Documentation.pdf).
